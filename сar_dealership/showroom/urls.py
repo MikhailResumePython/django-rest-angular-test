@@ -1,6 +1,4 @@
 from django.urls import path
-from django.conf import settings
-from django.conf.urls.static import static
 from rest_framework import routers
 
 from . import views
@@ -11,6 +9,4 @@ app_name = 'showroom'
 router = routers.SimpleRouter()
 router.register('cars', views.CarViewSet, basename='cars')
 
-urlpatterns = [
-    
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = [] 
