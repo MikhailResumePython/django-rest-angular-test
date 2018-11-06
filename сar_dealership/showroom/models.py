@@ -26,6 +26,6 @@ class Car(models.Model):
     image = models.ImageField(upload_to='images', blank=True)
 
     def __str__(self):
-        return str(self.brand) + ' ' + self.model
+        return '%s %s' % (str(self.brand), self.model)
 
 
