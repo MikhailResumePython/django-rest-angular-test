@@ -14,14 +14,12 @@ class CarListPageNumberPagination(PageNumberPagination):
     max_page_size = 10
 
 class CarViewSet(viewsets.ModelViewSet):
-    cars_per_page = 4
     serializer_class = CarSerializer
     pagination_class = CarListPageNumberPagination
 
     def get_queryset(self):
         queryset = Car.objects.all()
 
-        """ page = self.request.query_params.get('page', None) """
         manufacturer = self.request.query_params.get('manufacturer', None)
         brand = self.request.query_params.get('brand', None)
         order = self.request.query_params.get('order_by', None)
@@ -37,15 +35,6 @@ class CarViewSet(viewsets.ModelViewSet):
                 queryset = queryset.order_by('price')
             elif order == 'max_price':
                 queryset = queryset.order_by('-price')
-        """ if page is not None:
-            try:
-                page_int = int(page)
-            except ValueError:
-                return []
-            if(page_int <= 0 or page_int > self.cars_per_page):
-                return []
-            queryset = queryset[((page_int-1) * self.cars_per_page):(page_int*self.cars_per_page)] """
-
             
         return queryset
 
