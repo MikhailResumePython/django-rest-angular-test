@@ -17,11 +17,19 @@ export class CarListComponent implements OnInit {
   
   constructor(private data: DataService) { 
     this.sort_options = ['', 'min_price', 'max_price']
-    this.manufacturer_options = ['', 'Manufacturer1', 'Manufacturer2', 'Manufacturer3']
-    this.brand_options = ['', 'min_price', 'max_price']
+    this.manufacturer_options = ['', ]
+    this.brand_options = ['', ]
   }
 
   ngOnInit() {
+    this.data.getCarsInfo().subscribe(data => {
+      for (let man of data['manufacturers']) {
+        this.manufacturer_options.push(man['name']);
+      }
+      for (let brand of data['brands']) {
+        this.brand_options.push(brand['name']);
+      }
+    })
     this.data.getCars(1).subscribe(data => {
       this.cars = data;
       this.page_numbers_array = Array(this.cars['page_count']).fill(0).map((x,i)=>i+1);

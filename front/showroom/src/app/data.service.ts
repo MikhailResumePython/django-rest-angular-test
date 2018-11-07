@@ -17,4 +17,9 @@ export class DataService {
     
     return this.http.get(this.BASE_URL + '/cars.get_page/', { params });
   }
+
+  getCarsInfo() {
+    var params = new HttpParams();
+    return this.http.get(this.BASE_URL + '/cars.get_info/', { params });
+  }
 }
