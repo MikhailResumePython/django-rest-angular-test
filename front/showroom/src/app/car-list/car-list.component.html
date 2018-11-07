@@ -1,6 +1,19 @@
-<p>Sort by</p>
-
-<p>Filter</p>
+<h4>Sort</h4>
+<label>Sort by</label>
+<select>
+  <option *ngFor="let option of sort_options" value="{{option}}">{{option}}</option>
+</select>
+<br>
+<h4>Filter</h4>
+<label>Manufacturer</label>
+<select>
+  <option *ngFor="let option of manufacturer_options" value="{{option}}">{{option}}</option>
+</select>
+<br>
+<label>Brand</label>
+<select>
+  <option *ngFor="let option of brand_options" value="{{option}}">{{option}}</option>
+</select>
 
 <ul *ngIf="cars" class="list">
   <li *ngFor="let car of cars.results">
