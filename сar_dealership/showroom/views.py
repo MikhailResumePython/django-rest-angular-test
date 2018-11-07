@@ -6,7 +6,8 @@ from rest_framework import serializers
 from rest_framework.pagination import PageNumberPagination
 from collections import OrderedDict
 from showroom.models import Car, Manufacturer, Brand
-from showroom.serializers import CarSerializer
+from showroom.serializers import CarSerializer, ManufacturerSerializer, BrandSerializer, InfoSerializer
+
 
 class CarListPageNumberPagination(PageNumberPagination):
     page_size = 4
@@ -50,3 +51,11 @@ class CarViewSet(viewsets.ModelViewSet):
         return queryset
 
 
+class CarInfoViewSet(viewsets.ViewSet):
+    def list(self, request):
+        info = {
+            'manufacturers': Manufacturer.objects.all(),
+            'brands': Brand.objects.all(),
+        }
+        serializer = InfoSerializer(info)
+        return Response(serializer.data)

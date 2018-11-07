@@ -15,6 +15,6 @@ export class DataService {
       .set('page', String(page));
     
     
-    return this.http.get(this.BASE_URL + '/cars/', { params });
+    return this.http.get(this.BASE_URL + '/cars.get_page/', { params });
   }
 }

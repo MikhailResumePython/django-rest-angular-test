@@ -7,7 +7,7 @@ app_name = 'showroom'
 
 
 router = routers.SimpleRouter()
-router.register('cars', views.CarViewSet, basename='cars')
-router.register('cars.get_count', views.CarViewSet, basename='cars.get_count')
+router.register('cars.get_page', views.CarViewSet, basename='cars.get_page')
+router.register('cars.get_info', views.CarInfoViewSet, basename='cars.get_info')
 
 urlpatterns = [] 
