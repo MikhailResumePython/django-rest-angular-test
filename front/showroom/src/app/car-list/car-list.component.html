@@ -1,0 +1,26 @@
+<ul *ngIf="cars" class="list">
+  <li *ngFor="let car of cars.results">
+    <img class="car-image" [src]="car.image">
+    <p>{{ car.manufacturer }}, 
+      {{ car.brand }} 
+      {{ car.model }}, 
+      {{ car.price }} Euro,
+      {{ car.power }} hp,
+      {{ car.drive }} drive,
+      {{ car.engine_type }},
+      {{ car.transmission }} transmission
+    </p>
+  </li>
+</ul>
+
+<ul *ngIf="cars" class="pagination">
+    <li [ngClass]="{disabled:cars.previous === null}">
+        <a (click)="setPage(cars.current - 1)">Previous</a>
+    </li>
+    <li *ngFor="let page of page_numbers_array" [ngClass]="{active:cars.current === page}">
+        <a (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li [ngClass]="{disabled:cars.next === null}">
+        <a (click)="setPage(cars.current + 1)">Next</a>
+    </li>
+</ul>

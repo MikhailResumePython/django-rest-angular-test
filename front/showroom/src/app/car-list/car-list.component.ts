@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+
 
 @Component({
   selector: 'app-car-list',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarListComponent implements OnInit {
 
-  constructor() { }
+  cars: Object;
+  page_numbers_array: Array<number>;
+  
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.data.getCars(1).subscribe(data => {
+      this.cars = data;
+      this.page_numbers_array = Array(this.cars['page_count']).fill(0).map((x,i)=>i+1);
+    })
   }
+
+  setPage(page: number) {
+    this.data.getCars(page).subscribe(data => {
+      this.cars = data;
+    })
+}
+
 
 }

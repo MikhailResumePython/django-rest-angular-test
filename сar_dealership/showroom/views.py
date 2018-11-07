@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework.pagination import PageNumberPagination
-
+from collections import OrderedDict
 from showroom.models import Car, Manufacturer, Brand
 from showroom.serializers import CarSerializer
 
@@ -12,6 +12,17 @@ class CarListPageNumberPagination(PageNumberPagination):
     page_size = 4
     page_size_query_param = 'page_size'
     max_page_size = 10
+
+    def get_paginated_response(self, data):
+        return Response(OrderedDict([
+             ('page_count', self.page.paginator.num_pages),
+             ('page_size', self.page_size),
+             ('current', self.page.number),
+             ('next', self.get_next_link()),
+             ('previous', self.get_previous_link()),
+             ('results', data)
+         ]))
+    
 
 class CarViewSet(viewsets.ModelViewSet):
     serializer_class = CarSerializer
