@@ -20,21 +20,8 @@ img {
     width: 100%;
 }
 
-.pagination {
-    list-style-type: none;
-    display: inline-flex;
-}
-.pagination a {
-    padding: 5px;
-    cursor: pointer;
-}
+
 
 .disabled {
     pointer-events:none; 
-    opacity:0.6;    
-}     
-
-.active a {
-    pointer-events:none; 
-    color: #D12704;
 }     
