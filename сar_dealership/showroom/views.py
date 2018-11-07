@@ -59,3 +59,11 @@ class CarInfoViewSet(viewsets.ViewSet):
         }
         serializer = InfoSerializer(info)
         return Response(serializer.data)
+
+
+class OrderViewSet(viewsets.ViewSet):
+    def list(self, request):
+        info = {
+            
+        }
+        return Response(info)

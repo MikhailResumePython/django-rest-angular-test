@@ -36,3 +36,7 @@ img {
 select {
     margin-left: 5px;
 }
+
+ul.pagination {
+    cursor:pointer;
+}

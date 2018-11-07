@@ -1,17 +1,17 @@
 <h4>Sort</h4>
 <label>Sort by</label>
-<select>
-  <option *ngFor="let option of sort_options" value="{{option}}">{{option}}</option>
+<select (change)="initList()" [(ngModel)]="data.order_option">
+  <option *ngFor="let option of order_options" value="{{option}}">{{option}}</option>
 </select>
 <br>
 <h4>Filter</h4>
 <label>Manufacturer</label>
-<select>
+<select (change)="initList()" [(ngModel)]="data.manufacturer_option">
   <option *ngFor="let option of manufacturer_options" value="{{option}}">{{option}}</option>
 </select>
 <br>
 <label>Brand</label>
-<select>
+<select (change)="initList()" [(ngModel)]="data.brand_option">
   <option *ngFor="let option of brand_options" value="{{option}}">{{option}}</option>
 </select>
 

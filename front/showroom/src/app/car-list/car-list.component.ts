@@ -11,14 +11,22 @@ export class CarListComponent implements OnInit {
 
   cars: Object;
   page_numbers_array: Array<number>;
-  sort_options: Array<string>;
+  order_options: Array<string>;
   manufacturer_options: Array<string>;
   brand_options: Array<string>;
+  order_option: string;
   
   constructor(private data: DataService) { 
-    this.sort_options = ['', 'min_price', 'max_price']
+    this.order_options = ['', 'min_price', 'max_price']
     this.manufacturer_options = ['', ]
     this.brand_options = ['', ]
+  }
+
+  private initList() {
+    this.data.getCars(1).subscribe(data => {
+      this.cars = data;
+      this.page_numbers_array = Array(this.cars['page_count']).fill(0).map((x,i)=>i+1);
+    })
   }
 
   ngOnInit() {
@@ -30,10 +38,7 @@ export class CarListComponent implements OnInit {
         this.brand_options.push(brand['name']);
       }
     })
-    this.data.getCars(1).subscribe(data => {
-      this.cars = data;
-      this.page_numbers_array = Array(this.cars['page_count']).fill(0).map((x,i)=>i+1);
-    })
+    this.initList();
   }
 
   setPage(page: number) {
